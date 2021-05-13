@@ -27,24 +27,74 @@ namespace NewTetris {
         if (!Game.curShape.TryMoveDown()) {
           Game.curShape.DissolveIntoField();
           Game.curShape = null;
-          game.NextShape();
+          if (!Game.IsGameOver) {
+            game.NextShape();
+          } else {
+
+
+            tmrCurrentPieceFall.Enabled = false;
+            Quit.Visible = true;
+            GameOverText.Visible = true;
+
+
+            // TODO: HERE IS WHERE WE SET THE FINAL SCORE LATER
+            // GameOverText.Text = Score;
+
+          }
         }
       }
     }
+    /// <summary>
+    /// Events that involve the key being down
+    /// Speeding up the game, moving
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FrmMain_KeyDown(object sender, KeyEventArgs e) {
+      if (Game.IsGameOver) {
+        return;
+      }
+      if (e.KeyCode == Keys.Down) {
 
-    private void FrmMain_KeyUp(object sender, KeyEventArgs e) {
-      if (e.KeyCode == Keys.Left) {
-        Game.curShape.TryMoveLeft();
+         tmrCurrentPieceFall.Interval = 100;
+
+      }
+      else if (e.KeyCode == Keys.Left) {
+         Game.curShape.TryMoveLeft();
       }
       else if (e.KeyCode == Keys.Right) {
-        Game.curShape.TryMoveRight();
+         Game.curShape.TryMoveRight();
       }
-      else if (e.KeyCode == Keys.Z) {
+
+     }
+    /// <summary>
+    /// Events that involve the keys to go up
+    /// Normal speed, Rotations
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void FrmMain_KeyUp(object sender, KeyEventArgs e) {
+      if (Game.IsGameOver) {
+        return;
+      }
+      if (e.KeyCode == Keys.A) {
         Game.curShape.RotateCCW();
       }
-      else if (e.KeyCode == Keys.X) {
+      else if (e.KeyCode == Keys.S) {
         Game.curShape.RotateCW();
       }
+      
+      else if(e.KeyCode == Keys.Down) {
+
+         tmrCurrentPieceFall.Interval = 500;
+
+      }
+
+    }
+    private void Quit_Click(object sender, EventArgs e) {
+
+      this.Close();
+
     }
   }
 }

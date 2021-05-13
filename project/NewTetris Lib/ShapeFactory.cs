@@ -120,8 +120,8 @@
               {0,0,0,0}}),
           };
           break;
-        case ShapeType.REV_ZBLOCK:
-          orientations = new Orientation[] {
+         case ShapeType.REV_ZBLOCK:
+        orientations = new Orientation[] {
             MakeOrientation(new int[,] {
               {0,0,0,0},
               {0,1,1,0},
@@ -133,7 +133,22 @@
               {0,1,1,0},
               {0,0,1,0}}),
           };
-          break;
+          break; 
+       /*DEBUG case ShapeType.REV_ZBLOCK:
+        orientations = new Orientation[] {
+            MakeOrientation(new int[,] {
+              {0,0,0,0},
+              {1,1,1,1},
+              {0,0,0,0},
+              {0,0,0,0}}),
+            MakeOrientation(new int[,] {
+              {0,0,1,0},
+              {0,1,1,1},
+              {0,0,0,0},
+              {0,0,0,0}}),
+          };
+          break;DEBUG*/
+        
       }
       Shape shape = new Shape(orientations);
       return shape;

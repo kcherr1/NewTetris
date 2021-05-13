@@ -10,6 +10,7 @@ namespace NewTetris_Lib {
     /// </summary>
     public const int SIZE = 30;
 
+
     /// <summary>
     /// Current position of piece
     /// </summary>
@@ -21,11 +22,21 @@ namespace NewTetris_Lib {
     private PictureBox pic;
 
     /// <summary>
+    /// Getter and Setter
+    /// </summary>
+    public PictureBox Pic { get => pic; set => pic = value; }
+
+    /// <summary>
+    /// Getter and Setter
+    /// </summary>
+    public Position Pos { get => pos; set => pos = value; }
+
+    /// <summary>
     /// typical explicit constructor
     /// </summary>
     /// <param name="pos">This gives the position of the piece</param>
     public Piece(Position pos) {
-      this.pos = pos;
+      this.Pos = pos;
       pic = new PictureBox();
       pic.BackgroundImage = Game.imgPiece;
       pic.BackgroundImageLayout = ImageLayout.Stretch;
@@ -39,7 +50,7 @@ namespace NewTetris_Lib {
     /// </summary>
     /// <param name="pos">New position of the piece</param>
     public void SetPos(Position pos) {
-      this.pos = pos;
+      this.Pos = pos;
       UpdateImgPos();
     }
 
@@ -49,8 +60,8 @@ namespace NewTetris_Lib {
     /// of the piece will now match the coding position of the piece.
     /// </summary>
     private void UpdateImgPos() {
-      pic.Left = pos.x;
-      pic.Top = pos.y;
+      pic.Left = Pos.x;
+      pic.Top = Pos.y;
       pic.Refresh();
     }
 
@@ -59,7 +70,7 @@ namespace NewTetris_Lib {
     /// </summary>
     /// <returns>True if moving down will not cause a collision, False otherwise</returns>
     public bool CanMoveDown() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.y += SIZE;
       return !IsCollision(posMoveTo);
     }
@@ -69,7 +80,7 @@ namespace NewTetris_Lib {
     /// </summary>
     /// <returns>True if moving left will not cause a collision, False otherwise</returns>
     public bool CanMoveLeft() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.x -= SIZE;
       return !IsCollision(posMoveTo);
     }
@@ -79,7 +90,7 @@ namespace NewTetris_Lib {
     /// </summary>
     /// <returns>True if moving right will not cause a collision, False otherwise</returns>
     public bool CanMoveRight() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.x += SIZE;
       return !IsCollision(posMoveTo);
     }
@@ -89,9 +100,11 @@ namespace NewTetris_Lib {
     /// and puts a 1 in the playing field at that location, signify it is now occupied
     /// </summary>
     public void DissolveIntoField() {
-      int r = pos.y / SIZE;
-      int c = pos.x / SIZE;
+      int r = Pos.y / SIZE;
+      int c = Pos.x / SIZE;
       PlayingField.GetInstance().field[r, c] = 1;
+
+         
     }
 
     /// <summary>
@@ -99,10 +112,10 @@ namespace NewTetris_Lib {
     /// </summary>
     /// <returns>True if moving down was successful (i.e. no collision occurred), False otherwise</returns>
     public bool MoveDown() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.y += SIZE;
       if (!IsCollision(posMoveTo)) {
-        this.pos = posMoveTo;
+        this.Pos = posMoveTo;
         UpdateImgPos();
         return true;
       }
@@ -115,10 +128,10 @@ namespace NewTetris_Lib {
     /// Moves the piece left, updating the visual representation as well
     /// </summary>
     public void MoveLeft() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.x -= SIZE;
       if (!IsCollision(posMoveTo)) {
-        this.pos = posMoveTo;
+        this.Pos = posMoveTo;
         UpdateImgPos();
       }
     }
@@ -127,10 +140,10 @@ namespace NewTetris_Lib {
     /// Moves the piece right, updating the visual representation as well
     /// </summary>
     public void MoveRight() {
-      Position posMoveTo = pos;
+      Position posMoveTo = Pos;
       posMoveTo.x += SIZE;
       if (!IsCollision(posMoveTo)) {
-        this.pos = posMoveTo;
+        this.Pos = posMoveTo;
         UpdateImgPos();
       }
     }
@@ -143,7 +156,7 @@ namespace NewTetris_Lib {
     /// False otherwise
     /// </returns>
     public bool IsCollision() {
-      return IsCollision(this.pos);
+      return IsCollision(this.Pos);
     }
 
     /// <summary>
