@@ -19,6 +19,7 @@ namespace NewTetris {
       Game.imgPiece = Resources.block_piece;
       game = new Game();
       Game.field = lblPlayingField;
+      Game.NextBox = grpNextBlock;
       game.NextShape();
     }
 

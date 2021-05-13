@@ -47,6 +47,7 @@ namespace NewTetris_Lib {
     /// Current shape dropping onto the playing field
     /// </summary>
     public static Shape curShape;
+    
 
     /// <summary>
     /// Link to widget displaying the playing field. 
@@ -60,9 +61,9 @@ namespace NewTetris_Lib {
     /// can retrieve the image for a shape.
     /// </summary>
     public static Image imgPiece;
+    public int nextNum;
 
-
-
+    public static Control NextBox;
     /// <summary>
     /// Default constructor initializing random field and setting
     /// curShape to null
@@ -76,10 +77,98 @@ namespace NewTetris_Lib {
     /// Generates the next shape to be put into the playing field
     /// </summary>
     public void NextShape() {
-      int shapeNum = random.Next(7);
-      //ShapeType shapeType = (ShapeType)shapeNum;
-      ShapeType shapeType = ShapeType.LINE;
-      curShape = ShapeFactory.MakeShape(shapeType);
+      if(nextNum == null)
+            {
+                nextNum = random.Next(7);
+                int shapeNum = random.Next(7);
+                ShapeType shapetype = (ShapeType)shapeNum;
+                curShape = ShapeFactory.MakeShape(shapetype);
+                setNextImage(nextNum);
+            }
+      else
+            {
+                clearNextBox();
+                ShapeType shapetype = (ShapeType)nextNum;
+                curShape = ShapeFactory.MakeShape(shapetype);
+                nextNum = random.Next(7);
+                setNextImage(nextNum);
+            }    
+     }
+        public void clearNextBox()
+        {
+            NextBox.Controls.Clear();
+        }
+        public void setNextImage(int t)
+        {
+            //Line
+            if(t == 0)
+            {
+                for(int i = 0; i <= 4; i++)
+                {
+                    createNextBlock(1,i);
+                }
+            }
+            //Square
+            if(t == 1)
+            {
+                createNextBlock(1,1);
+                createNextBlock(2,2);
+                createNextBlock(1,2);
+                createNextBlock(2,1);
+            }
+            //L Block
+            if(t == 2)
+            {
+                createNextBlock(1,1);
+                createNextBlock(1,2);
+                createNextBlock(1,3);
+                createNextBlock(2,3);
+            }
+            // reverse L Block
+            if(t == 3)
+            {
+                createNextBlock(2,1);
+                createNextBlock(2,2);
+                createNextBlock(2,3);
+                createNextBlock(1,3);
+            }
+            //Z block
+            if(t == 4)
+            {
+                createNextBlock(1,1);
+                createNextBlock(1,2);
+                createNextBlock(2,2);
+                createNextBlock(0,1);
+            }
+            //T block
+            if(t == 5)
+            {
+                createNextBlock(0,2);
+                createNextBlock(1,2);
+                createNextBlock(2,2);
+                createNextBlock(1,1);
+            }
+            //reverse Z block
+            if(t == 6)
+            {
+                createNextBlock(0,2);
+                createNextBlock(1,2);
+                createNextBlock(1,1);
+                createNextBlock(2,1);
+            }
+            
+            
+        }
+        public void createNextBlock(int x, int y)
+        {
+            PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.imgPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
         }
   }
 }
