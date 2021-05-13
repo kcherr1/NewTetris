@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace NewTetris_Lib {
   /// <summary>
@@ -53,16 +56,117 @@ namespace NewTetris_Lib {
       if (r < 0 || r >= field.GetLength(0) || c < 0 || c >= field.GetLength(1)) {
         return false;
       }
+     
       return field[r, c] == 0;
     }
 
     /// <summary>
-    /// Checks each row to see if any of them are filled and
-    /// needs to be cleared, then clears those rows - currently
-    /// unused and not implemented
+    /// Obtains the row numbers of the rows to be cleared
+    /// Goes through the appropriate rows and Removes the pieces
+    /// It also moves any pieces above the row down
     /// </summary>
-    public void CheckClearAllRows() {
+    public async void clearRow() {
+
+      List<int> rows = CheckClearAllRows();
+
+      for (int i = 0; i < rows.Count; i++) {
+        for (int j = 0; j < 15; j++) {
+
+          // Removes the Pieces
+          Game.field.Controls.Remove(Shape.DissolvedPictureArray[rows[i], j].Pic);
+          // Set that position to 0 and remove it
+          Shape.DissolvedPictureArray[rows[i], j] = null;
+          this.field[rows[i], j] = 0;
+
+          // Animation in ms
+          await Task.Delay(40);
+
+        }
+      }
+
+     movePiecesDown(rows, rows.Min());
 
     }
+
+    /// <summary>
+    /// Moves pieces down by recursively going from the row above the cleared row
+    /// all the way to the top
+    /// </summary>
+    public async void movePiecesDown(List<int> rows, int limit) {
+      int pieceMoveCounter = 0;
+
+      if (limit == 0) {
+        return;
+      }
+
+      int i = limit;
+
+          for (int j = 0; j < 15; j++) {
+
+            if (this.field[i, j] == 1) {
+          try {
+            while (Shape.DissolvedPictureArray[i, j].CanMoveDown()) {
+              Shape.DissolvedPictureArray[i, j].MoveDown();
+              await Task.Delay(50);
+              pieceMoveCounter++;
+            }
+            }catch(NullReferenceException _) {
+            continue;
+          }
+              
+
+              Shape.DissolvedPictureArray[i + pieceMoveCounter, j] = Shape.DissolvedPictureArray[i, j];
+              this.field[i + pieceMoveCounter, j] = 1;
+
+              Shape.DissolvedPictureArray[i, j] = null;
+              this.field[i, j] = 0;
+              pieceMoveCounter = 0;
+
+            }
+
+
+
+          }
+
+        
+      movePiecesDown(rows, limit - 1);
+    }
+
+    /// <summary>
+    /// Checks each row to see if any of them are filled and
+    /// needs to be cleared, then clears those rows
+    /// </summary>
+    public List<int> CheckClearAllRows() {
+      
+      // Counts rows with all 1s in it
+      // int count = 0;
+      int count1s;
+      List<int> rows = new List<int>();
+
+      for (int i = 0; i < 22; i++) {
+        count1s = 0;
+        for (int j = 0; j < 15; j++) {
+
+          if(this.field[i,j] == 1){
+
+            count1s++;
+              
+          } 
+
+          if(count1s == 15){
+
+            rows.Add(i);
+
+          }
+          
+        }
+        
+      }
+
+      return rows;
+
+    }
+
+
   }
 }

@@ -30,6 +30,8 @@
       this.label3 = new System.Windows.Forms.Label();
       this.grpNextBlock = new System.Windows.Forms.GroupBox();
       this.tmrCurrentPieceFall = new System.Windows.Forms.Timer(this.components);
+      this.GameOverText = new System.Windows.Forms.Label();
+      this.Quit = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // lblPlayingField
@@ -89,19 +91,47 @@
       this.tmrCurrentPieceFall.Interval = 500;
       this.tmrCurrentPieceFall.Tick += new System.EventHandler(this.tmrCurrentPieceFall_Tick);
       // 
+      // GameOverText
+      // 
+      this.GameOverText.BackColor = System.Drawing.Color.DeepSkyBlue;
+      this.GameOverText.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.GameOverText.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.GameOverText.Location = new System.Drawing.Point(454, 256);
+      this.GameOverText.Name = "GameOverText";
+      this.GameOverText.Size = new System.Drawing.Size(334, 339);
+      this.GameOverText.TabIndex = 14;
+      this.GameOverText.Text = "Game Over\r\nScore: TODO";
+      this.GameOverText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      this.GameOverText.Visible = false;
+      // 
+      // Quit
+      // 
+      this.Quit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.Quit.Location = new System.Drawing.Point(547, 526);
+      this.Quit.Name = "Quit";
+      this.Quit.Size = new System.Drawing.Size(146, 38);
+      this.Quit.TabIndex = 15;
+      this.Quit.Text = "Quit";
+      this.Quit.UseVisualStyleBackColor = true;
+      this.Quit.Visible = false;
+      this.Quit.Click += new System.EventHandler(this.Quit_Click);
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Black;
       this.ClientSize = new System.Drawing.Size(1183, 803);
+      this.Controls.Add(this.Quit);
+      this.Controls.Add(this.GameOverText);
       this.Controls.Add(this.grpNextBlock);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.lblLevel);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.lblPlayingField);
       this.Name = "FrmMain";
-      this.Text = "Form1";
+      this.Text = "New Tetris 3.0";
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
       this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyUp);
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -115,6 +145,8 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.GroupBox grpNextBlock;
     private System.Windows.Forms.Timer tmrCurrentPieceFall;
+    private System.Windows.Forms.Label GameOverText;
+    private System.Windows.Forms.Button Quit;
   }
 }
 

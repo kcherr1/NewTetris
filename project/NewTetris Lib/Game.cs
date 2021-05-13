@@ -12,6 +12,20 @@ namespace NewTetris_Lib {
     /// </summary>
     private int level;
 
+
+    /// <summary>
+    /// Game Over variable, false if a piece has not touched
+    /// the upper border of the playing field
+    /// </summary>
+    private static bool isGameOver = false;
+
+
+    /// <summary>
+    /// Gets and sets the game over Variable
+    /// </summary>
+    public static bool IsGameOver { get => isGameOver; set => isGameOver = value; }
+
+
     /// <summary>
     /// Flag to see if player is currently playing the level
     /// and therefore level code should be running - currently unused
@@ -47,6 +61,8 @@ namespace NewTetris_Lib {
     /// </summary>
     public static Image imgPiece;
 
+
+
     /// <summary>
     /// Default constructor initializing random field and setting
     /// curShape to null
@@ -61,8 +77,9 @@ namespace NewTetris_Lib {
     /// </summary>
     public void NextShape() {
       int shapeNum = random.Next(7);
-      ShapeType shapeType = (ShapeType)shapeNum;
+      //ShapeType shapeType = (ShapeType)shapeNum;
+      ShapeType shapeType = ShapeType.LINE;
       curShape = ShapeFactory.MakeShape(shapeType);
-    }
+        }
   }
 }

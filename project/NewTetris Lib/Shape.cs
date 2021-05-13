@@ -1,4 +1,8 @@
-﻿namespace NewTetris_Lib {
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+
+
+namespace NewTetris_Lib {
   /// <summary>
   /// Used to store a Tetris shape
   /// </summary>
@@ -10,6 +14,11 @@
     private Piece[] pieces;
 
     /// <summary>
+    /// Array of pictures that have been dissolved in the playing field
+    /// </summary>
+    private static Piece[,] dissolvedPictureArray = new Piece[22, 15];
+
+    /// <summary>
     /// Array of orientations for this shape
     /// </summary>
     private Orientation[] orientations;
@@ -18,6 +27,12 @@
     /// Current orientation
     /// </summary>
     private int orientationIndex;
+
+    /// <summary>
+    /// Getters and setters
+    /// </summary>
+    public static Piece[,] DissolvedPictureArray { get => dissolvedPictureArray; set => dissolvedPictureArray = value; }
+
 
     /// <summary>
     /// Default constructor
@@ -170,11 +185,30 @@
 
     /// <summary>
     /// Dissolves each piece into playing field, setting each
-    /// position to 1 in the field
+    /// position to 1 in the field, checks if a row can be cleared and game over
     /// </summary>
     public void DissolveIntoField() {
       foreach (Piece piece in pieces) {
         piece.DissolveIntoField();
+        if(piece.Pos.y == 0) {
+          Game.IsGameOver = true;
+        }
+
+        // Find Position of each piece
+        int r = piece.Pos.y / Piece.SIZE;
+        int c = piece.Pos.x / Piece.SIZE;
+
+        // Add it to the appropriate position in the matrix
+        DissolvedPictureArray[r, c] = piece;
+      }
+
+
+      // Once a shape is placed check if any rows can be cleared
+     while(PlayingField.GetInstance().CheckClearAllRows().Count != 0) {
+
+        PlayingField.GetInstance().clearRow();
+
+
       }
     }
   }
