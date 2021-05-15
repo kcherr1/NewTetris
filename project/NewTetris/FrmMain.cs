@@ -20,6 +20,7 @@ namespace NewTetris {
       game = new Game();
       Game.field = lblPlayingField;
       Game.NextBox = grpNextBlock;
+            Game.StoreBox = grpStoreBlock;
       game.NextShape();
     }
 
@@ -100,6 +101,10 @@ namespace NewTetris {
         game.NextShape();
 
       }
+      else if (e.KeyCode == Keys.X)
+            {
+                game.storeShape();
+            }
 
     }
     private void Quit_Click(object sender, EventArgs e) {

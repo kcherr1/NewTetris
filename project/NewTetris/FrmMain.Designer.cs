@@ -28,7 +28,9 @@
       this.label2 = new System.Windows.Forms.Label();
       this.lblLevel = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
       this.grpNextBlock = new System.Windows.Forms.GroupBox();
+            this.grpStoreBlock = new System.Windows.Forms.GroupBox();
       this.tmrCurrentPieceFall = new System.Windows.Forms.Timer(this.components);
       this.GameOverText = new System.Windows.Forms.Label();
       this.Quit = new System.Windows.Forms.Button();
@@ -76,6 +78,17 @@
       this.label3.TabIndex = 11;
       this.label3.Text = "Next Block:";
       // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+      this.label4.Location = new System.Drawing.Point(862, 231);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(132, 25);
+      this.label4.TabIndex = 11;
+      this.label4.Text = "Store Block:";
+      // 
       // grpNextBlock
       // 
       this.grpNextBlock.BackColor = System.Drawing.Color.DimGray;
@@ -84,6 +97,15 @@
       this.grpNextBlock.Size = new System.Drawing.Size(120, 120);
       this.grpNextBlock.TabIndex = 13;
       this.grpNextBlock.TabStop = false;
+            //
+            // grpStoreBlock
+            //
+            this.grpStoreBlock.BackColor = System.Drawing.Color.DimGray;
+      this.grpStoreBlock.Location = new System.Drawing.Point(1000, 231);
+      this.grpStoreBlock.Name = "grpStoreBlock";
+      this.grpStoreBlock.Size = new System.Drawing.Size(120, 120);
+      this.grpStoreBlock.TabIndex = 13;
+      this.grpStoreBlock.TabStop = false;
       // 
       // tmrCurrentPieceFall
       // 
@@ -125,7 +147,9 @@
       this.Controls.Add(this.Quit);
       this.Controls.Add(this.GameOverText);
       this.Controls.Add(this.grpNextBlock);
+            this.Controls.Add(this.grpStoreBlock);
       this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
       this.Controls.Add(this.lblLevel);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.lblPlayingField);
@@ -144,6 +168,8 @@
     private System.Windows.Forms.Label lblLevel;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.GroupBox grpNextBlock;
+        private System.Windows.Forms.GroupBox grpStoreBlock;
+        private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Timer tmrCurrentPieceFall;
     private System.Windows.Forms.Label GameOverText;
     private System.Windows.Forms.Button Quit;

@@ -33,7 +33,7 @@ namespace NewTetris_Lib {
     /// Getters and setters
     /// </summary>
     public static Piece[,] DissolvedPictureArray { get => dissolvedPictureArray; set => dissolvedPictureArray = value; }
-
+        public bool storePressed = false;
 
     /// <summary>
     /// Default constructor
@@ -201,6 +201,7 @@ namespace NewTetris_Lib {
 
         // Add it to the appropriate position in the matrix
         DissolvedPictureArray[r, c] = piece;
+               this.storePressed = false;
       }
 
 
@@ -212,6 +213,14 @@ namespace NewTetris_Lib {
 
       }
     }
+
+        public void destroyShape()
+        {
+            foreach(Piece piece in pieces)
+            {
+                 piece.Pic.Hide();
+            }
+        }
 
     /// <summary>
     /// Instantly Drops the shape by finding the lowest point 
