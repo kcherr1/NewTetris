@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace NewTetris_Lib {
   /// <summary>
@@ -102,9 +103,9 @@ namespace NewTetris_Lib {
     public void DissolveIntoField() {
       int r = Pos.y / SIZE;
       int c = Pos.x / SIZE;
+        
       PlayingField.GetInstance().field[r, c] = 1;
 
-         
     }
 
     /// <summary>
@@ -121,6 +122,35 @@ namespace NewTetris_Lib {
       }
       else {
         return false;
+      }
+    }
+
+    /// <summary>
+    /// Finds the lowest point a piece can drop
+    /// </summary>
+    /// <returns>The number of times it can fall</returns>
+    public int FindLowestPoint() {
+
+      Position posMoveTo = Pos;
+      int counter = 0;
+      while (!IsCollision(posMoveTo)) {
+        posMoveTo.y += SIZE;
+        counter++;
+      }
+
+      return counter - 1;
+
+    }
+    /// <summary>
+    /// Moves the piece down to the point provided by the counter
+    /// </summary>
+    /// <param name="counter">The lowest point a piece can drop to preserve the shape still</param>
+    public void MoveCompletelyDown(int counter) {
+
+      for (int i = 0; i < counter; i++) {
+        this.pos.y += SIZE;
+        UpdateImgPos();
+
       }
     }
 

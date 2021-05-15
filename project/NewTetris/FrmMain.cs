@@ -67,6 +67,9 @@ namespace NewTetris {
          Game.curShape.TryMoveRight();
       }
 
+      
+
+
      }
     /// <summary>
     /// Events that involve the keys to go up
@@ -88,6 +91,13 @@ namespace NewTetris {
       else if(e.KeyCode == Keys.Down) {
 
          tmrCurrentPieceFall.Interval = 500;
+
+      }
+
+      else if (e.KeyCode == Keys.Space) {
+
+        Game.curShape.DropShapeInstantly();
+        game.NextShape();
 
       }
 
