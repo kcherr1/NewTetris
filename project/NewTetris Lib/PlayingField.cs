@@ -71,15 +71,19 @@ namespace NewTetris_Lib {
 
       for (int i = 0; i < rows.Count; i++) {
         for (int j = 0; j < 15; j++) {
+          try {
+            Game.field.Controls.Remove(Shape.DissolvedPictureArray[rows[i], j].Pic);
+            // Set that position to 0 and remove it
+            Shape.DissolvedPictureArray[rows[i], j] = null;
+            this.field[rows[i], j] = 0;
 
+            // Animation in ms
+            await Task.Delay(10);
+          }catch(Exception e) {
+            continue;
+          }
           // Removes the Pieces
-          Game.field.Controls.Remove(Shape.DissolvedPictureArray[rows[i], j].Pic);
-          // Set that position to 0 and remove it
-          Shape.DissolvedPictureArray[rows[i], j] = null;
-          this.field[rows[i], j] = 0;
-
-          // Animation in ms
-          await Task.Delay(40);
+         
 
         }
       }
@@ -111,7 +115,7 @@ namespace NewTetris_Lib {
               pieceMoveCounter++;
             }
             }catch(NullReferenceException _) {
-            continue;
+            
           }
               
 

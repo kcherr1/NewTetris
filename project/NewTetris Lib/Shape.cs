@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 
 
 namespace NewTetris_Lib {
@@ -211,5 +212,30 @@ namespace NewTetris_Lib {
 
       }
     }
+
+    /// <summary>
+    /// Instantly Drops the shape by finding the lowest point 
+    /// of each piece and droping them by the min of their lowest point
+    /// to preserve the shape
+    /// </summary>
+    public void DropShapeInstantly() {
+      
+      List<int> lowestPoint = new List<int>();
+
+      foreach(Piece piece in pieces) {
+
+        lowestPoint.Add(piece.FindLowestPoint());
+      }
+
+      foreach (Piece piece in pieces) {
+
+        piece.MoveCompletelyDown(lowestPoint.Min());
+
+      }
+
+      this.DissolveIntoField();
+
+    }
+
   }
 }
