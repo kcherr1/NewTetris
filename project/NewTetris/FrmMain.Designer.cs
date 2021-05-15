@@ -94,7 +94,7 @@
       this.grpNextBlock.BackColor = System.Drawing.Color.DimGray;
       this.grpNextBlock.Location = new System.Drawing.Point(186, 231);
       this.grpNextBlock.Name = "grpNextBlock";
-      this.grpNextBlock.Size = new System.Drawing.Size(120, 120);
+      this.grpNextBlock.Size = new System.Drawing.Size(120, 550);
       this.grpNextBlock.TabIndex = 13;
       this.grpNextBlock.TabStop = false;
             //

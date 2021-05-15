@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace NewTetris_Lib {
   /// <summary>
@@ -61,13 +62,17 @@ namespace NewTetris_Lib {
     /// can retrieve the image for a shape.
     /// </summary>
     public static Image imgPiece;
+        /// <summary>
+        /// These are all the variables that are used relating to storing and the next block functions.
+        /// </summary>
     public int nextNum;
         public int curNum;
         public bool shapeStored = false;
         public int storeNum;
-
+        public Queue nextQueue = new Queue();
     public static Control NextBox;
         public static Control StoreBox;
+
     /// <summary>
     /// Default constructor initializing random field and setting
     /// curShape to null
@@ -82,23 +87,43 @@ namespace NewTetris_Lib {
     /// </summary>
     public void NextShape() {
             
-      if(nextNum == null)
+      if(nextQueue.Count == 0)
             {
-                nextNum = random.Next(7);
+                for(int j = 0; j < 4; j++)
+                {
+                    int MakeQ = random.Next(7);
+                    nextQueue.Enqueue(MakeQ);
+                }
+                //nextNum = random.Next(7);
+                int d = 0;
+                foreach(int bNum in nextQueue)
+                {
+                    setNextImage(bNum,d);
+                    d += 4;
+                }
                 int shapeNum = random.Next(7);
                 ShapeType shapetype = (ShapeType)shapeNum;
                 curShape = ShapeFactory.MakeShape(shapetype);
                 curNum = shapeNum;
-                setNextImage(nextNum);
+                //setNextImage(nextNum);
             }
       else
             {
-                clearNextBox();
+                clearNextBox();                
+                int shapeNum = random.Next(7);
+                nextNum = (int)nextQueue.Dequeue();
+                nextQueue.Enqueue(shapeNum);
+                int d = 0;
+                foreach(int bNum in nextQueue)
+                {
+                    setNextImage(bNum,d);
+                    d += 5;
+                }
                 ShapeType shapetype = (ShapeType)nextNum;
                 curShape = ShapeFactory.MakeShape(shapetype);
                 curNum = nextNum;
-                nextNum = random.Next(7);
-                setNextImage(nextNum);
+                //nextNum = random.Next(7);
+                //setNextImage(nextNum);
             }    
      }
 
@@ -133,63 +158,65 @@ namespace NewTetris_Lib {
         {
             StoreBox.Controls.Clear();
         }
-        public void setNextImage(int t)
+        public void setNextImage(int t, int distance)
         {
             //Line
             if(t == 0)
             {
-                for(int i = 0; i <= 4; i++)
-                {
-                    createNextBlock(1,i);
-                }
+                
+                createNextBlock(1,0+distance);
+                createNextBlock(1,1+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(1,3+distance);
+                
             }
             //Square
             if(t == 1)
             {
-                createNextBlock(1,1);
-                createNextBlock(2,2);
-                createNextBlock(1,2);
-                createNextBlock(2,1);
+                createNextBlock(1,1+distance);
+                createNextBlock(2,2+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(2,1+distance);
             }
             //L Block
             if(t == 2)
             {
-                createNextBlock(1,1);
-                createNextBlock(1,2);
-                createNextBlock(1,3);
-                createNextBlock(2,3);
+                createNextBlock(1,1+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(1,3+distance);
+                createNextBlock(2,3+distance);
             }
             // reverse L Block
             if(t == 3)
             {
-                createNextBlock(2,1);
-                createNextBlock(2,2);
-                createNextBlock(2,3);
-                createNextBlock(1,3);
+                createNextBlock(2,1+distance);
+                createNextBlock(2,2+distance);
+                createNextBlock(2,3+distance);
+                createNextBlock(1,3+distance);
             }
             //Z block
             if(t == 4)
             {
-                createNextBlock(1,1);
-                createNextBlock(1,2);
-                createNextBlock(2,2);
-                createNextBlock(0,1);
+                createNextBlock(1,1+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(2,2+distance);
+                createNextBlock(0,1+distance);
             }
             //T block
             if(t == 5)
             {
-                createNextBlock(0,2);
-                createNextBlock(1,2);
-                createNextBlock(2,2);
-                createNextBlock(1,1);
+                createNextBlock(0,2+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(2,2+distance);
+                createNextBlock(1,1+distance);
             }
             //reverse Z block
             if(t == 6)
             {
-                createNextBlock(0,2);
-                createNextBlock(1,2);
-                createNextBlock(1,1);
-                createNextBlock(2,1);
+                createNextBlock(0,2+distance);
+                createNextBlock(1,2+distance);
+                createNextBlock(1,1+distance);
+                createNextBlock(2,1+distance);
             }
             
             
