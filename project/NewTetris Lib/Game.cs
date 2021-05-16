@@ -61,12 +61,19 @@ namespace NewTetris_Lib {
     /// compose a shape. This is used so the New Tetris Library
     /// can retrieve the image for a shape.
     /// </summary>
+    /// Here we are setting all the different color images to a value.
     public static Image imgPiece;
+        public static Image bluePiece;
+        public static Image redPiece;
+        public static Image orangePiece;
+        public static Image yellowPiece;
+        public static Image greenPiece;
+        public static Image cyanPiece;
         /// <summary>
         /// These are all the variables that are used relating to storing and the next block functions.
         /// </summary>
     public int nextNum;
-        public int curNum;
+        public int curNum = 0;
         public bool shapeStored = false;
         public int storeNum;
         public Queue nextQueue = new Queue();
@@ -164,59 +171,59 @@ namespace NewTetris_Lib {
             if(t == 0)
             {
                 
-                createNextBlock(1,0+distance);
-                createNextBlock(1,1+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(1,3+distance);
+                createNextBlock(1,0+distance,0);
+                createNextBlock(1,1+distance,0);
+                createNextBlock(1,2+distance,0);
+                createNextBlock(1,3+distance,0);
                 
             }
             //Square
             if(t == 1)
             {
-                createNextBlock(1,1+distance);
-                createNextBlock(2,2+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(2,1+distance);
+                createNextBlock(1,0+distance,1);
+                createNextBlock(2,1+distance,1);
+                createNextBlock(1,1+distance,1);
+                createNextBlock(2,0+distance,1);
             }
             //L Block
             if(t == 2)
             {
-                createNextBlock(1,1+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(1,3+distance);
-                createNextBlock(2,3+distance);
+                createNextBlock(1,0+distance,2);
+                createNextBlock(1,1+distance,2);
+                createNextBlock(1,2+distance,2);
+                createNextBlock(2,2+distance,2);
             }
             // reverse L Block
             if(t == 3)
             {
-                createNextBlock(2,1+distance);
-                createNextBlock(2,2+distance);
-                createNextBlock(2,3+distance);
-                createNextBlock(1,3+distance);
+                createNextBlock(2,0+distance,3);
+                createNextBlock(2,1+distance,3);
+                createNextBlock(2,2+distance,3);
+                createNextBlock(1,2+distance,3);
             }
             //Z block
             if(t == 4)
             {
-                createNextBlock(1,1+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(2,2+distance);
-                createNextBlock(0,1+distance);
+                createNextBlock(1,0+distance,4);
+                createNextBlock(1,1+distance,4);
+                createNextBlock(2,1+distance,4);
+                createNextBlock(0,0+distance,4);
             }
             //T block
             if(t == 5)
             {
-                createNextBlock(0,2+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(2,2+distance);
-                createNextBlock(1,1+distance);
+                createNextBlock(0,1+distance,5);
+                createNextBlock(1,1+distance,5);
+                createNextBlock(2,1+distance,5);
+                createNextBlock(1,0+distance,5);
             }
             //reverse Z block
             if(t == 6)
             {
-                createNextBlock(0,2+distance);
-                createNextBlock(1,2+distance);
-                createNextBlock(1,1+distance);
-                createNextBlock(2,1+distance);
+                createNextBlock(0,1+distance,6);
+                createNextBlock(1,1+distance,6);
+                createNextBlock(1,0+distance,6);
+                createNextBlock(2,0+distance,6);
             }
             
             
@@ -226,63 +233,122 @@ namespace NewTetris_Lib {
             //Line
             if(t == 0)
             {
-                for(int i = 0; i <= 4; i++)
-                {
-                    createStoreBlock(1,i);
-                }
+                
+                createStoreBlock(1,0,0);
+                createStoreBlock(1,1,0);
+                createStoreBlock(1,2,0);
+                createStoreBlock(1,3,0);
+                
             }
             //Square
             if(t == 1)
             {
-                createStoreBlock(1,1);
-                createStoreBlock(2,2);
-                createStoreBlock(1,2);
-                createStoreBlock(2,1);
+                createStoreBlock(1,1,1);
+                createStoreBlock(2,2,1);
+                createStoreBlock(1,2,1);
+                createStoreBlock(2,1,1);
             }
             //L Block
             if(t == 2)
             {
-                createStoreBlock(1,1);
-                createStoreBlock(1,2);
-                createStoreBlock(1,3);
-                createStoreBlock(2,3);
+                createStoreBlock(1,1,2);
+                createStoreBlock(1,2,2);
+                createStoreBlock(1,3,2);
+                createStoreBlock(2,3,2);
             }
             // reverse L Block
             if(t == 3)
             {
-                createStoreBlock(2,1);
-                createStoreBlock(2,2);
-                createStoreBlock(2,3);
-                createStoreBlock(1,3);
+                createStoreBlock(2,1,3);
+                createStoreBlock(2,2,3);
+                createStoreBlock(2,3,3);
+                createStoreBlock(1,3,3);
             }
             //Z block
             if(t == 4)
             {
-                createStoreBlock(1,1);
-                createStoreBlock(1,2);
-                createStoreBlock(2,2);
-                createStoreBlock(0,1);
+                createStoreBlock(1,1,4);
+                createStoreBlock(1,2,4);
+                createStoreBlock(2,2,4);
+                createStoreBlock(0,1,4);
             }
             //T block
             if(t == 5)
             {
-                createStoreBlock(0,2);
-                createStoreBlock(1,2);
-                createStoreBlock(2,2);
-                createStoreBlock(1,1);
+                createStoreBlock(0,2,5);
+                createStoreBlock(1,2,5);
+                createStoreBlock(2,2,5);
+                createStoreBlock(1,1,5);
             }
             //reverse Z block
             if(t == 6)
             {
-                createStoreBlock(0,2);
-                createStoreBlock(1,2);
-                createStoreBlock(1,1);
-                createStoreBlock(2,1);
+                createStoreBlock(0,2,6);
+                createStoreBlock(1,2,6);
+                createStoreBlock(1,1,6);
+                createStoreBlock(2,1,6);
             }
         }
-        public void createNextBlock(int x, int y)
+        public void createNextBlock(int x, int y, int t)
         {
-            PictureBox pic;
+            if(t == 0)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.cyanPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 1)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.yellowPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 2)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.bluePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 3)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.orangePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 4)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.redPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 5)
+            {
+                PictureBox pic;
                 pic = new PictureBox();
                 pic.BackgroundImage = Game.imgPiece;
                 pic.BackgroundImageLayout = ImageLayout.Stretch;
@@ -290,17 +356,98 @@ namespace NewTetris_Lib {
                 Game.NextBox.Controls.Add(pic);
                 pic.Left = 30*x;
                 pic.Top = 30*y;
+            }
+           if(t == 6)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.greenPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.NextBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
         }
-        public void createStoreBlock(int x, int y)
+        public void createStoreBlock(int x, int y, int t)
         {
-            PictureBox pic;
-            pic = new PictureBox();
-            pic.BackgroundImage = Game.imgPiece;
-            pic.BackgroundImageLayout = ImageLayout.Stretch;
-            pic.Size = new System.Drawing.Size(30, 30);
-            Game.StoreBox.Controls.Add(pic);
-            pic.Left = 30*x;
-            pic.Top = 30*y;
+           if(t == 0)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.cyanPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 1)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.yellowPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 2)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.bluePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 3)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.orangePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 4)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.redPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 5)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.imgPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
+           if(t == 6)
+            {
+                PictureBox pic;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.greenPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(30, 30);
+                Game.StoreBox.Controls.Add(pic);
+                pic.Left = 30*x;
+                pic.Top = 30*y;
+            }
         }
   }
 }

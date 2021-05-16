@@ -17,6 +17,12 @@ namespace NewTetris {
     public FrmMain() {
       InitializeComponent();
       Game.imgPiece = Resources.block_piece;
+            Game.bluePiece = Resources.blue;
+            Game.redPiece = Resources.red;
+            Game.orangePiece = Resources.orange;
+            Game.yellowPiece = Resources.yellow;
+            Game.greenPiece = Resources.green;
+            Game.cyanPiece = Resources.cyan;
       game = new Game();
       Game.field = lblPlayingField;
       Game.NextBox = grpNextBlock;

@@ -150,7 +150,7 @@
           break;DEBUG*/
         
       }
-      Shape shape = new Shape(orientations);
+      Shape shape = new Shape(orientations, (int)type);
       return shape;
     }
 

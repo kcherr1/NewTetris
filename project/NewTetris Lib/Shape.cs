@@ -39,13 +39,14 @@ namespace NewTetris_Lib {
     /// Default constructor
     /// </summary>
     /// <param name="orientations">Array of orientations to use</param>
-    public Shape(Orientation[] orientations) {
+    public Shape(Orientation[] orientations, int t) {
       this.orientationIndex = 0;
       this.orientations = orientations;
       pieces = new Piece[4];
       int numPositions = orientations[orientationIndex].positions.Count;
+            
       for (int i = 0; i < 4; i++) {
-        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions]);
+        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions],t);
       }
     }
 
