@@ -17,9 +17,16 @@ namespace NewTetris {
     public FrmMain() {
       InitializeComponent();
       Game.imgPiece = Resources.block_piece;
+            Game.bluePiece = Resources.blue;
+            Game.redPiece = Resources.red;
+            Game.orangePiece = Resources.orange;
+            Game.yellowPiece = Resources.yellow;
+            Game.greenPiece = Resources.green;
+            Game.cyanPiece = Resources.cyan;
       game = new Game();
       Game.field = lblPlayingField;
       Game.NextBox = grpNextBlock;
+            Game.StoreBox = grpStoreBlock;
       game.NextShape();
     }
 
@@ -100,6 +107,10 @@ namespace NewTetris {
         game.NextShape();
 
       }
+      else if (e.KeyCode == Keys.X)
+            {
+                game.storeShape();
+            }
 
     }
     private void Quit_Click(object sender, EventArgs e) {

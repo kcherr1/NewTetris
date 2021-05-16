@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
+
 namespace NewTetris_Lib {
   /// <summary>
   /// The class holds a single cube that can be used to compose a Tetris shape
@@ -36,14 +37,79 @@ namespace NewTetris_Lib {
     /// typical explicit constructor
     /// </summary>
     /// <param name="pos">This gives the position of the piece</param>
-    public Piece(Position pos) {
-      this.Pos = pos;
-      pic = new PictureBox();
-      pic.BackgroundImage = Game.imgPiece;
-      pic.BackgroundImageLayout = ImageLayout.Stretch;
-      pic.Size = new System.Drawing.Size(SIZE, SIZE);
-      Game.field.Controls.Add(pic);
-      UpdateImgPos();
+    public Piece(Position pos,int shapeNum) {
+            
+            if(shapeNum == 0)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.cyanPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 1)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.yellowPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 2)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.bluePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 3)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.orangePiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 4)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.redPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 5)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.imgPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+            if(shapeNum == 6)
+            {
+                this.Pos = pos;
+                pic = new PictureBox();
+                pic.BackgroundImage = Game.greenPiece;
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+                pic.Size = new System.Drawing.Size(SIZE, SIZE);
+                Game.field.Controls.Add(pic);
+                UpdateImgPos();
+            }
+      
     }
     
     /// <summary>
@@ -107,6 +173,8 @@ namespace NewTetris_Lib {
       PlayingField.GetInstance().field[r, c] = 1;
 
     }
+
+        
 
     /// <summary>
     /// Moves the piece down, updating the visual representation as well

@@ -33,19 +33,20 @@ namespace NewTetris_Lib {
     /// Getters and setters
     /// </summary>
     public static Piece[,] DissolvedPictureArray { get => dissolvedPictureArray; set => dissolvedPictureArray = value; }
-
+        public bool storePressed = false;
 
     /// <summary>
     /// Default constructor
     /// </summary>
     /// <param name="orientations">Array of orientations to use</param>
-    public Shape(Orientation[] orientations) {
+    public Shape(Orientation[] orientations, int t) {
       this.orientationIndex = 0;
       this.orientations = orientations;
       pieces = new Piece[4];
       int numPositions = orientations[orientationIndex].positions.Count;
+            
       for (int i = 0; i < 4; i++) {
-        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions]);
+        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions],t);
       }
     }
 
@@ -201,6 +202,7 @@ namespace NewTetris_Lib {
 
         // Add it to the appropriate position in the matrix
         DissolvedPictureArray[r, c] = piece;
+               this.storePressed = false;
       }
 
 
@@ -212,6 +214,14 @@ namespace NewTetris_Lib {
 
       }
     }
+
+        public void destroyShape()
+        {
+            foreach(Piece piece in pieces)
+            {
+                 piece.Pic.Hide();
+            }
+        }
 
     /// <summary>
     /// Instantly Drops the shape by finding the lowest point 
