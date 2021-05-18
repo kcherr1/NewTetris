@@ -189,7 +189,7 @@ namespace NewTetris_Lib {
     /// Dissolves each piece into playing field, setting each
     /// position to 1 in the field, checks if a row can be cleared and game over
     /// </summary>
-    public void DissolveIntoField() {
+    public async void DissolveIntoField() {
       foreach (Piece piece in pieces) {
         piece.DissolveIntoField();
         if(piece.Pos.y == 0) {
@@ -209,7 +209,7 @@ namespace NewTetris_Lib {
       // Once a shape is placed check if any rows can be cleared
      while(PlayingField.GetInstance().CheckClearAllRows().Count != 0) {
 
-        PlayingField.GetInstance().clearRow();
+        await PlayingField.GetInstance().clearRow();
 
 
       }

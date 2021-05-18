@@ -65,23 +65,22 @@ namespace NewTetris_Lib {
     /// Goes through the appropriate rows and Removes the pieces
     /// It also moves any pieces above the row down
     /// </summary>
-    public async void clearRow() {
+    public async Task clearRow() {
 
       List<int> rows = CheckClearAllRows();
 
       for (int i = 0; i < rows.Count; i++) {
         for (int j = 0; j < 15; j++) {
-          try {
+         
             Game.field.Controls.Remove(Shape.DissolvedPictureArray[rows[i], j].Pic);
+
             // Set that position to 0 and remove it
             Shape.DissolvedPictureArray[rows[i], j] = null;
             this.field[rows[i], j] = 0;
 
             // Animation in ms
             await Task.Delay(10);
-          }catch(Exception e) {
-            continue;
-          }
+          
           // Removes the Pieces
          
 
@@ -108,18 +107,20 @@ namespace NewTetris_Lib {
           for (int j = 0; j < 15; j++) {
 
             if (this.field[i, j] == 1) {
-          try {
-            while (Shape.DissolvedPictureArray[i, j].CanMoveDown()) {
-              Shape.DissolvedPictureArray[i, j].MoveDown();
-              await Task.Delay(50);
-              pieceMoveCounter++;
-            }
-            }catch(NullReferenceException _) {
-            
-          }
-              
 
-              Shape.DissolvedPictureArray[i + pieceMoveCounter, j] = Shape.DissolvedPictureArray[i, j];
+
+          for (int k = 0; k < rows.Count; k++) {
+
+          
+            if(Shape.DissolvedPictureArray[i, j].CanMoveDown()) {
+            Shape.DissolvedPictureArray[i, j].MoveDown();
+            await Task.Delay(10);
+            pieceMoveCounter++;
+
+            }
+          }
+
+          Shape.DissolvedPictureArray[i + pieceMoveCounter, j] = Shape.DissolvedPictureArray[i, j];
               this.field[i + pieceMoveCounter, j] = 1;
 
               Shape.DissolvedPictureArray[i, j] = null;
