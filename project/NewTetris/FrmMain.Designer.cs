@@ -50,22 +50,22 @@
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-      this.label2.Location = new System.Drawing.Point(48, 165);
+      this.label2.Location = new System.Drawing.Point(18, 165);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(76, 25);
       this.label2.TabIndex = 8;
-      this.label2.Text = "Level:";
+      this.label2.Text = "Lines Cleared:";
       // 
       // lblLevel
       // 
       this.lblLevel.AutoSize = true;
       this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.lblLevel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-      this.lblLevel.Location = new System.Drawing.Point(145, 165);
+      this.lblLevel.Location = new System.Drawing.Point(185, 165);
       this.lblLevel.Name = "lblLevel";
       this.lblLevel.Size = new System.Drawing.Size(42, 25);
       this.lblLevel.TabIndex = 10;
-      this.lblLevel.Text = "XX";
+      this.lblLevel.Text = "0";
       // 
       // label3
       // 

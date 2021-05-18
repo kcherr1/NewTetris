@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace NewTetris_Lib {
   /// <summary>
@@ -20,6 +21,9 @@ namespace NewTetris_Lib {
     /// Grid holding 1 for occupied, 0 for vacant
     /// </summary>
     public int[,] field;
+
+        public static Control lvlLabel;
+        public int level = 0;
 
     /// <summary>
     /// Observer pattern event for when a row is 
@@ -86,10 +90,15 @@ namespace NewTetris_Lib {
 
         }
       }
-
      movePiecesDown(rows, rows.Min());
-
+     increaseLevel(rows.Count);
     }
+
+        public void increaseLevel(int i)
+        {
+            level += i;
+            lvlLabel.Text = level.ToString();
+        }
 
     /// <summary>
     /// Moves pieces down by recursively going from the row above the cleared row

@@ -26,6 +26,7 @@ namespace NewTetris {
       game = new Game();
       Game.field = lblPlayingField;
       Game.NextBox = grpNextBlock;
+            PlayingField.lvlLabel = lblLevel;
             Game.StoreBox = grpStoreBlock;
       game.NextShape();
     }
