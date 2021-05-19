@@ -122,19 +122,19 @@ namespace NewTetris_Lib {
         public void increasescore(int i)
         {
             if (i == 1){
-                score += 50;
+                score += 100;
             }
             if (i == 2)
             {
-                score += 100;
+                score += 200;
             }
             if (i == 3)
             {
-                score += 200;
+                score += 500;
             }
             if (i == 4)
             {
-                score += 500;
+                score += 1000;
             }
             scoreing.Text = score.ToString();
         }
