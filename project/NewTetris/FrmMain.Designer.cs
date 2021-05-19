@@ -33,6 +33,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.grpStoreBlock = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
       this.tmrCurrentPieceFall = new System.Windows.Forms.Timer(this.components);
       this.GameOverText = new System.Windows.Forms.Label();
       this.Quit = new System.Windows.Forms.Button();
@@ -90,6 +91,17 @@
             this.label6.Size = new System.Drawing.Size(76, 25);
             this.label6.TabIndex = 8;
             this.label6.Text = "Score:";
+            //
+            //label7
+            //
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label7.Location = new System.Drawing.Point(0,0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(76, 25);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Contorls:\r\nArrow keys = Movement\r\nStore Block = X\r\nRotate Block = S\r\nInstant Drop = Space Bar";
       //
       // label3
       // 
@@ -176,6 +188,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
       this.Controls.Add(this.lblLevel);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.lblPlayingField);
@@ -198,6 +211,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7; 
     private System.Windows.Forms.Timer tmrCurrentPieceFall;
     private System.Windows.Forms.Label GameOverText;
     private System.Windows.Forms.Button Quit;

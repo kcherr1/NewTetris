@@ -108,7 +108,7 @@ namespace NewTetris_Lib {
         public void increasespeed(int i)
         {
             level += i;
-            tmpspeed = 500 - (10 * level);
+            tmpspeed = 500 - (8 * level);
             if (tmpspeed > 50)
             {
                 lvlspeed = tmpspeed;
