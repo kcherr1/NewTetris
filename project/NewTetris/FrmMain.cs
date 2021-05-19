@@ -27,6 +27,7 @@ namespace NewTetris {
       Game.field = lblPlayingField;
       Game.NextBox = grpNextBlock;
             PlayingField.lvlLabel = lblLevel;
+            PlayingField.scoreing = label5;
             Game.StoreBox = grpStoreBlock;
       game.NextShape();
     }
@@ -44,11 +45,7 @@ namespace NewTetris {
             tmrCurrentPieceFall.Enabled = false;
             Quit.Visible = true;
             GameOverText.Visible = true;
-
-
-            // TODO: HERE IS WHERE WE SET THE FINAL SCORE LATER
-            // GameOverText.Text = Score;
-
+                        GameOverText.Text = String.Concat("Game Over\r\n Score:",PlayingField.GetInstance().score.ToString());
           }
         }
       }

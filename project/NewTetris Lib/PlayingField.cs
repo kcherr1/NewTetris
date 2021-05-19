@@ -24,6 +24,8 @@ namespace NewTetris_Lib {
 
         public static Control lvlLabel;
         public int level = 0;
+        public static Control scoreing;
+        public int score = 0;
 
     /// <summary>
     /// Observer pattern event for when a row is 
@@ -92,12 +94,33 @@ namespace NewTetris_Lib {
       }
      movePiecesDown(rows, rows.Min());
      increaseLevel(rows.Count);
+     increasescore(rows.Count);
     }
 
         public void increaseLevel(int i)
         {
             level += i;
             lvlLabel.Text = level.ToString();
+        }
+
+        public void increasescore(int i)
+        {
+            if (i == 1){
+                score += 1;
+            }
+            if (i == 2)
+            {
+                score += 2;
+            }
+            if (i == 3)
+            {
+                score += 5;
+            }
+            if (i == 4)
+            {
+                score += 10;
+            }
+            scoreing.Text = score.ToString();
         }
 
     /// <summary>

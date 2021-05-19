@@ -25,8 +25,6 @@ namespace NewTetris_Lib {
     /// Gets and sets the game over Variable
     /// </summary>
     public static bool IsGameOver { get => isGameOver; set => isGameOver = value; }
-
-
     /// <summary>
     /// Flag to see if player is currently playing the level
     /// and therefore level code should be running - currently unused
