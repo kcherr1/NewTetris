@@ -29,11 +29,13 @@ namespace NewTetris {
             PlayingField.lvlLabel = lblLevel;
             PlayingField.scoreing = label5;
             Game.StoreBox = grpStoreBlock;
-      game.NextShape();
+            
+            game.NextShape();
     }
 
     private void tmrCurrentPieceFall_Tick(object sender, EventArgs e) {
       if (Game.curShape != null) {
+                tmrCurrentPieceFall.Interval = PlayingField.GetInstance().lvlspeed;
         if (!Game.curShape.TryMoveDown()) {
           Game.curShape.DissolveIntoField();
           Game.curShape = null;
