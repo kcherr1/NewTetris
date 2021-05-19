@@ -99,12 +99,20 @@ namespace NewTetris_Lib {
      increasescore(rows.Count);
      increasespeed(rows.Count);
     }
-
+        //This function (increaseLevel) will show our lines cleared
+        //It uses the cleared rows to get the number of rows being cleared
+        //in each instance and adds them to our level which is used as
+        //our lines cleared
         public void increaseLevel(int i)
         {
             level += i;
             lvlLabel.Text = level.ToString();
         }
+        //This function(increasespeed) will increase our speed as the level progress
+        //the levels are based of the lines clear
+        //It increases the speed by decreasing the tick timer;
+        //however, the tick timer can no go below 0 so I set the
+        //minimum tick timer to 50.
         public void increasespeed(int i)
         {
             level += i;
@@ -118,7 +126,8 @@ namespace NewTetris_Lib {
                 lvlspeed = 50;
             }
         }
-
+        //This function(increasescore) will apply a score increase to the score board
+        //based of of how many rows are cleared
         public void increasescore(int i)
         {
             if (i == 1){

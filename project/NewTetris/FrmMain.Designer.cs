@@ -70,38 +70,38 @@
       this.lblLevel.TabIndex = 10;
       this.lblLevel.Text = "0";
       //
-      //label5
+      //label5 is our actually score points, and where they are displayed and updated to.
       //
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label5.Location = new System.Drawing.Point(970, 165);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "0";
-            //
-            //label6
-            //
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label6.Location = new System.Drawing.Point(860, 165);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 25);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Score:";
-            //
-            //label7
-            //
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label7.Location = new System.Drawing.Point(0,0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 25);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Contorls:\r\nArrow keys = Movement\r\nStore Block = X\r\nRotate Block = S\r\nInstant Drop = Space Bar";
+      this.label5.AutoSize = true;
+      this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+      this.label5.Location = new System.Drawing.Point(970, 165);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(76, 25);
+      this.label5.TabIndex = 8;
+      this.label5.Text = "0";
+      //
+      //label6 is our Score label
+      //
+      this.label6.AutoSize = true;
+      this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+      this.label6.Location = new System.Drawing.Point(860, 165);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(76, 25);
+      this.label6.TabIndex = 8;
+      this.label6.Text = "Score:";
+       //
+       //Contorls label that displays the controls
+       //
+       this.label7.AutoSize = true;
+       this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+       this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+       this.label7.Location = new System.Drawing.Point(0,0);
+       this.label7.Name = "label7";
+       this.label7.Size = new System.Drawing.Size(76, 25);
+       this.label7.TabIndex = 8;
+       this.label7.Text = "Contorls:\r\nArrow keys = Movement\r\nStore Block = X\r\nRotate Block = S\r\nInstant Drop = Space Bar";
       //
       // label3
       // 
