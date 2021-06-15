@@ -1,4 +1,9 @@
-﻿namespace NewTetris_Lib {
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Linq;
+
+
+namespace NewTetris_Lib {
   /// <summary>
   /// Used to store a Tetris shape
   /// </summary>
@@ -8,6 +13,11 @@
     /// composes this shape. Is always 4 pieces.
     /// </summary>
     private Piece[] pieces;
+
+    /// <summary>
+    /// Array of pictures that have been dissolved in the playing field
+    /// </summary>
+    private static Piece[,] dissolvedPictureArray = new Piece[22, 15];
 
     /// <summary>
     /// Array of orientations for this shape
@@ -20,16 +30,23 @@
     private int orientationIndex;
 
     /// <summary>
+    /// Getters and setters
+    /// </summary>
+    public static Piece[,] DissolvedPictureArray { get => dissolvedPictureArray; set => dissolvedPictureArray = value; }
+        public bool storePressed = false;
+
+    /// <summary>
     /// Default constructor
     /// </summary>
     /// <param name="orientations">Array of orientations to use</param>
-    public Shape(Orientation[] orientations) {
+    public Shape(Orientation[] orientations, int t) {
       this.orientationIndex = 0;
       this.orientations = orientations;
       pieces = new Piece[4];
       int numPositions = orientations[orientationIndex].positions.Count;
+            
       for (int i = 0; i < 4; i++) {
-        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions]);
+        pieces[i] = new Piece(orientations[orientationIndex].positions[i % numPositions],t);
       }
     }
 
@@ -170,12 +187,65 @@
 
     /// <summary>
     /// Dissolves each piece into playing field, setting each
-    /// position to 1 in the field
+    /// position to 1 in the field, checks if a row can be cleared and game over
     /// </summary>
-    public void DissolveIntoField() {
+    public async void DissolveIntoField() {
       foreach (Piece piece in pieces) {
         piece.DissolveIntoField();
+        if(piece.Pos.y == 0) {
+          Game.IsGameOver = true;
+        }
+
+        // Find Position of each piece
+        int r = piece.Pos.y / Piece.SIZE;
+        int c = piece.Pos.x / Piece.SIZE;
+
+        // Add it to the appropriate position in the matrix
+        DissolvedPictureArray[r, c] = piece;
+               this.storePressed = false;
+      }
+
+
+      // Once a shape is placed check if any rows can be cleared
+     while(PlayingField.GetInstance().CheckClearAllRows().Count != 0) {
+
+        await PlayingField.GetInstance().clearRow();
+
+
       }
     }
+
+        public void destroyShape()
+        {
+            foreach(Piece piece in pieces)
+            {
+                 piece.Pic.Hide();
+            }
+        }
+
+    /// <summary>
+    /// Instantly Drops the shape by finding the lowest point 
+    /// of each piece and droping them by the min of their lowest point
+    /// to preserve the shape
+    /// </summary>
+    public void DropShapeInstantly() {
+      
+      List<int> lowestPoint = new List<int>();
+
+      foreach(Piece piece in pieces) {
+
+        lowestPoint.Add(piece.FindLowestPoint());
+      }
+
+      foreach (Piece piece in pieces) {
+
+        piece.MoveCompletelyDown(lowestPoint.Min());
+
+      }
+
+      this.DissolveIntoField();
+
+    }
+
   }
 }
